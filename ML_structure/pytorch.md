@@ -1,0 +1,13 @@
+## logging
+---
+- 로깅은 어떤 소프트웨어가 실행될 때 발생하는 이벤트를 추적하는 수단
+- 소프트웨어 개발자는 코드에 로깅 호출을 추가하여 특정 이벤트가 발생했음을 나타냄
+- 이벤트는 또한 개발자가 이벤트에 부여한 중요도를 가지고 있음.
+    - level/severity 라고 부름
+    - logging.info() : 프로그램의 정상 작동 중에 발생하는 이벤트 보고 (상태 모니터링이나 결함 조사)
+    - logging.debug() : 상세한 정보, 보통 문제를 진단할 때만 필요
+    - logging.warning() : 특정 실행시간 이벤트와 관련하여 경고를 발행, 클라이언트 응용 프로그램이 할 수 있는 일이 없는 상황이지만 이벤트를 계속 주목해야 하는 경우
+    - logging.error(), logging,exception(), logging.critical(): 예외를 발생시키지 않고 에러의 억제를 보고 (가령 장기 실행 서버 프로세스의 에러 처리기)
+    - logging.basicConfig(format='%(asctime)s %(message)s') : 기본적으로 날짜 표시
+    - *logging을 통해서 loss를 저장해야함.
+    - torch.save() / torch.load()로 관리해야함.

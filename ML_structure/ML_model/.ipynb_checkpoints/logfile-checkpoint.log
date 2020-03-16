@@ -1,0 +1,4 @@
+INFO:ML_struct:epoch: 1/2 | step: 100/938 | train loss: 1.9110 | val loss: 1.6559
+INFO:ML_struct:epoch: 1/2 | step: 200/938 | train loss: 1.6163 | val loss: 1.5575
+INFO:ML_struct:epoch: 1/2 | step: 300/938 | train loss: 1.5636 | val loss: 1.5599
+INFO:ML_struct:epoch: 1/2 | step: 400/938 | train loss: 1.5435 | val loss: 1.5206
