@@ -1,0 +1,82 @@
+## [AI 트랜드] from kakao brain (https://kakaobrain.com/blog/118?fbclid=IwAR3s3h0wLIvjV_K9h9ZXsnczts-T50LqU8zXHpq0LWf6rTVPMz8tuksGKag)
+---
+- NLP
+    - 자연어 이해 (Natural Language Understaing, NLU)
+        - 자연어 형태의 문장을 **이해** 시키는 기술
+            - 감정 분석, 기계 독해, 상식 추론, 의미론적 유사도 측정, 목적 기반 대화, 관계 추출, 의미론적 구문 분석
+    - 자연어 생성 (Natural Language Generation, NLG)
+        - 자연어 문장을 **생성**하는 기술
+            - 자동완성, 스토리 생성, 생성형 언어 모델, 데이터 기반 문장 생성, 캡션 생성
+        - * 공통 부분: 생성형 문서 요약, 생성형 질의 응답, E2E 챗봇
+---
+#### NLU
+- '이해한다' : 현재 기술 수준에 근거해 주어진 과제에 적절한 답을 내놓는 기계
+    - 기계의 이해 능력이 좋아져야 사용자가 만족할 만한 수준의 정보나 답을 들을 수 있다.
+    - 라벨링 데이터를 확보하는 일 자체가 난관
+        - 많은 양의 텍스트 데이터를 모으기 어렵다
+        - 여러 과제를 사전학습하는 데 유용한 라벨링 방식조차 논의되기 어렵다.
+            - $\rightarrow$ 비라벨링 데이터만 주어진 상태에서 입력 데이터 일부를 라벨로 사용하거나 사전지식에 따라 라벨을 만들어 모델을 훈련하는 self-supervised learning
+            - 텍스트 훈련에 효과적인 딥러닝 모델 아키텍처 개발
+            - GPU와 딥러닝 라이브러리 발전
+                - 효과적인 사전 훈련하는 모델 개발이 가능해짐
+---
+#### 평가?
+- 언어를 이해한다는 해우이는 구체적으로 **정의**도 **검증**도 어렵다.
+    - Sentiment Analysis: SST, IMDb, NSMC
+    - Similarlity Prediction: STS, MRPC, QQP, PAWS-X
+    - Natual Language Inference: SNLI, MNLI, XNLI, aNLI
+    - Linguistic Acceptability: CoLA
+    - Reading Comprehension : SQuaAD, RACE, MS MARCO, KorQuAD
+    - Intent Classification : ATIS, SNIPS, AskUbuntu
+        - 우선은 이걸 중심으로 하는데 GCN도 같이 할 수 있는 지 보기
+    - 언어 모델의 성능 평가: GLUE, SuperGLUE라는 벤치 마크.
+---
+- ELMo(2018, Allen AI)
+    - 양방향 LSTM 아키텍처를 이용해 주어진 sequence 다음에 오는 단어(순방향) 또는 앞에 오는 단어(역방향)을 예측한다.
+    - Word2Vec은 문맥에 따라 다른 의미를 가지는 다의어를 하나의 방식으로만 표현
+        - 다의어를 문맥에 다르게 표현할 수 있다. 2~5개의 단어만 고려하는 Word2Vec과 달리, 128~1024 단어를 고려할 수 있음.
+    - 단점: 문장이 길수록 계산 속도가 느려지고 거리가 먼 단어 간 관계를 제대로 표현하기 어려움.
+        - 이를 극복하기 위해 Transformer 구조를 활용
+- GPT-1(2018, OpenAI)
+    - Transformer를 이용한 순방향 언어 모델
+    - feature vector를 다시 단어로 복원하는 디코더 구조상 문장을 수월하게 생성할 수 있음.
+        - GPT-2는 모델의 규모를 키워 문장 생성 과제에 집중
+- BERT(2018, Google)
+    - Transformer의 인코더만 이용한 완전 양방향 사전 훈련 언어 모델
+    - 단어 시퀀스의 복잡한 관계를 잘 표현할 수 있도록 학습 문장마다 매번 서로 다르게 무작위로 비운 단어를 예측할 수 있가 함(masked language model, MLM)
+        - 각 문장을 구성하는 단어 중 15%를 [Mask] 토큰으로 변경하는 식
+    - 서로 인접한 두 문장 간의 관계를 예측하는 방법(next sentence prediction, NSP)도 학습.
+        - 두개의 문장 중 두번째 문장이 첫번째 문장의 다음 문장인지를 맞출 수 있도록 관련성이 있는 두 문장(positive example)과 관련성이 없는 문장(negative example)dmf 1:1의 비율로 학습 데이터셋을 구성
+            - 주어진 문장의 전후 문장을 함께 학습하면 문장을 유용한 임베딩 벡터로 변환하는 연구 접근 방식과 유사함
+        - 단점: 여러 단어를 동시에 예측할 때 해당 단어 간 상관관계를 고려하지 않는 점
+- XLNet(2019, CMU, Google Brain)
+    - BERT의 문제를 해결하기 위해 앞뒤 문맥을 동시에 고려하는 양방향 언어 모델과 예측 단어 간 상관관계를 고려하는 순방향 모델의 장점을 합침
+    - 단점: 모델이 지나치게 복잡, 상대적으로 덜 사용
+- RoBERTa(2019, FAIR)
+    - BERT보다 성능을 한 단계 업그레이드 한 버전
+        - 데이터양 13GB->160GB
+        - 학습 횟수 125,000->500,000회
+        - 배치 크기 256->8,192
+        - 사전 크기 32,000->50,000
+- ALBERT(2019, Google, A Littel BERT)
+    - BERT보다 가벼운 모델
+        - 매개변수 수를 줄여 같은 구조의 모델에서의 메모리 사용량을 줄이고 학습 속도를 높임
+        - 각 단어의 저차원의 임베딩 벡터로 먼저 표현하고 나서 이를 다시 모델 은닉층의 차원 수만큼 확장
+        - Transformer 인코더 블록 간 매개변수를 공유
+        - 매개변수수는 1/18, 학습 속도 1.7배 상승
+- T5 (2019, Google)
+    - T5는 한 모델로 모든 문제를 풀면서도 모델의 규모를 키우겠다는 사고의 집약체 
+    - 변수수(110억개), 데이터(700GB)
+---
+- 한계점
+    - GLUE나 SuperGLUE와 같은 최신 벤치마크에서 최고 성능을 달성한 모델이 실제로 자연어를 이해했다고 보기가 어렵다는 정황은 여러 NLU 과제에서 발견되고 있다.
+---
+- 2020년 NLU 트렌드?
+    - relation-based question-answering, knowledge graph를 이용해 사실관계(entity relations)를 표현하려는 시도가 있었음.
+    - inferential knowledge graph + GPT 추론 능력을 높이려는 시도
+    - MobileBERT나 sentenceBERT처럼 검색에 필요한 임베딩 방법론을 연구하는 트렌드
+    - BERT를 활용 하는 것도 
+        - 어떤 데이터를 얼마나 사용해야 하는지
+        - 어떻게 하면 모델을 효과적으로 훈련할 수 있을지
+        - 어떻게 해야 편향과 아티팩트에도 흔들리지 않는 견고한 모델을 만들 수 있을 지
+        
