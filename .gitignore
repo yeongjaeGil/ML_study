@@ -1,1 +1,9 @@
+# Compiled source #
+###########
 *.csv
+*.gz
+*.log
+*.iml
+.DS_Store
+temp/
+
