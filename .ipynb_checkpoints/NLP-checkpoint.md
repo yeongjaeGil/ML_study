@@ -1,4 +1,4 @@
-## [AI 트랜드] from kakao brain (https://kakaobrain.com/blog/118?fbclid=IwAR3s3h0wLIvjV_K9h9ZXsnczts-T50LqU8zXHpq0LWf6rTVPMz8tuksGKag)
+## [AI 트랜드](https://kakaobrain.com/blog/118?fbclid=IwAR3s3h0wLIvjV_K9h9ZXsnczts-T50LqU8zXHpq0LWf6rTVPMz8tuksGKag) from kakao brain 
 ---
 - NLP
     - 자연어 이해 (Natural Language Understaing, NLU)

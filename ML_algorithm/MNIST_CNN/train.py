@@ -61,7 +61,7 @@ if __name__ == "__main__":
     test_loader = data.DataLoader(dataset=test_dataset,
                                               batch_size=batch_size,
                                               shuffle=False)
-    model = Net()
+    model = nn.DataParallel(Net())
     model.to(device)
     criterion = F.nll_loss
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
