@@ -1,5 +1,10 @@
-## logging
----
+#### torch 특징
+- Python First
+- numpy와 호환성
+- Autograd
+- 동적 그래프: 연산과 종시에 동적 그래프가 생기므로 자유로움
+
+#### logging
 - 로깅은 어떤 소프트웨어가 실행될 때 발생하는 이벤트를 추적하는 수단
 - 소프트웨어 개발자는 코드에 로깅 호출을 추가하여 특정 이벤트가 발생했음을 나타냄
 - 이벤트는 또한 개발자가 이벤트에 부여한 중요도를 가지고 있음.
@@ -35,6 +40,6 @@
 
 
 ---
-
+- train()과 eval()을 구분시켜줘야함. inference 단계는 dropout이나 batch normalization등이 각 상황에 맞게 동작함.
 
 [pytorch](https://wordbe.tistory.com/entry/Pytorch-1-%ED%8C%8C%EC%9D%B4%ED%86%A0%EC%B9%98%EB%A5%BC-%EC%8D%A8%EC%95%BC%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-%ED%85%90%EC%84%9C%EB%9E%80)

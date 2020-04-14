@@ -8,5 +8,13 @@
 - Cross validation
 - Cross entropy 관련?
 - bagging, boosting 차이?
-
-
+- jensen's inequality
+- lr에 따라 overshooing해서 diverse
+- Date Representation
+    - 데이터를 다루고 실제적으로 사용하기 위해 데이터를 어떠한 형식으로 표현할 수 있어야 한다
+    - Enbedding: 어떤 현상을(x를) 벡터공간상에 표현 
+    - 데이터의 특성을 잘 파악하여 ML 알고리즘에 맞는 형태로 나타내야한다.
+        - 이미지
+        - Text
+- 추천 시스템이란?
+- Backpropagation of Convolution
